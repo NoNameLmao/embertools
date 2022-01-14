@@ -1,15 +1,19 @@
 {
     "name": "emberutils",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "a collection of helpful things",
-    "main": "src/index.js",
-    "types": "src/index.d.ts",
+    "main": "index.js",
+    "types": "index.d.ts",
     "scripts": {
-        "test": "ts-node test.ts"
+        "test": "node test.js && ts-node test.ts"
     },
     "keywords": [
         "tools"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/NoNameLmao/emberutils"
+    },
     "author": "emberglaze",
     "license": "MIT",
     "dependencies": {

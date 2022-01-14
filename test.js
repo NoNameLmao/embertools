@@ -1,8 +1,8 @@
-console.log('===== Beginning TypeScript testing =====');
-import { getRandomArbitrary, getRandomInt, jsonRead, jsonWrite, limit, sleep, characters } from './index'
+console.log('===== Starting JavaScript testing =====');
+const { characters, getRandomArbitrary, getRandomInt, jsonRead, jsonWrite, limit, sleep } = require('./index');
 console.log(getRandomArbitrary(-1337, 1337));
 console.log(getRandomInt(420));
-(async () => {
+(async() => {
     let test = await jsonRead('./test.json');
     console.log(test);
     console.log(test['why-are-you-here'].answers[2]);
@@ -13,5 +13,5 @@ console.log(getRandomInt(420));
     await sleep(1000);
     console.log('this should appear a second after');
     console.log('and if it does, then test successful!');
-    console.log('===== Finished TypeScript testing =====');
+    console.log('===== Finished JavaScript testing =====');
 })();
