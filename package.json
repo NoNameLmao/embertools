@@ -1,0 +1,22 @@
+{
+    "name": "embertools",
+    "version": "0.0.1",
+    "description": "a collection of helpful things",
+    "main": "index.ts",
+    "scripts": {
+        "test": "ts-node test.ts"
+    },
+    "keywords": [
+        "tools"
+    ],
+    "author": "emberglaze",
+    "license": "MIT",
+    "dependencies": {
+        "node": "^17.3.1",
+        "ts-node": "^10.4.0"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.8",
+        "typescript": "^4.5.4"
+    }
+}

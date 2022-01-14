@@ -1,0 +1,17 @@
+{
+    "this-is-a-small-json": {
+        "for testing": "purposes"
+    },
+    "why-are-you-here": {
+        "reasons": [
+            "i want to steal your code",
+            "i want to see how bad your code is",
+            "idk"
+        ],
+        "answers": [
+            "its bad anyway",
+            "very bad",
+            "j"
+        ]
+    }
+}
