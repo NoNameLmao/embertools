@@ -1,6 +1,6 @@
 {
     "name": "emberutils",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "a collection of helpful things",
     "main": "src/index.js",
     "types": "src/index.d.ts",

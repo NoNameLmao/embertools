@@ -2,6 +2,9 @@
     "compilerOptions": {
         "module": "CommonJS",
         "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "types": ["./src/index"],
+        "lib": ["ES2015", "DOM"],
         "removeComments": true,
         "preserveConstEnums": true,
     }
