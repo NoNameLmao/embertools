@@ -1,3 +1,5 @@
+/// <reference types="typescript" />
+
 /**
  * Get a pseudo-random number between "min" and "max" numbers. Includes both "min" and "max" numbers. Supports negative numbers.
  * @param {number} min Minimal value.

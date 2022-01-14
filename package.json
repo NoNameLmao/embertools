@@ -1,8 +1,9 @@
 {
-    "name": "embertools",
-    "version": "0.0.1",
+    "name": "emberutils",
+    "version": "0.0.2",
     "description": "a collection of helpful things",
-    "main": "index.ts",
+    "main": "src/index.js",
+    "types": "src/index.d.ts",
     "scripts": {
         "test": "ts-node test.ts"
     },
