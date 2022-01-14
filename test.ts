@@ -1,4 +1,5 @@
-import { getRandomArbitrary, getRandomInt, jsonRead, jsonWrite, limit, sleep, characters } from './src/index'
+console.log('===== Beginning testing =====');
+import { getRandomArbitrary, getRandomInt, jsonRead, jsonWrite, limit, sleep, characters } from './index'
 console.log(getRandomArbitrary(-1337, 1337));
 console.log(getRandomInt(420));
 (async() => {
@@ -12,4 +13,5 @@ console.log(getRandomInt(420));
     await sleep(1000);
     console.log('this should appear a second after');
     console.log('and if it does, then test successful!');
+    console.log('===== Finished testing =====');
 })();
