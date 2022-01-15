@@ -36,7 +36,7 @@ function sleep(ms) {
 /**
  * Limit a string's length to a certain number of characters.
  * @param {string} string String to limit.
- * @param {number} limit Length to limit the string to. 
+ * @param {number} limit Number to limit the string's length to.
  * @returns {string} If string length is less than specified in "limit", returns the string itself. Otherwise returns string with the limited length.
  * @example
  * const string = 'Subscribe to technoblade'; // 24 characters long
