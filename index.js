@@ -1,4 +1,4 @@
-const fs = require('fs/promises');
+const fs = require('fs').promises; // for compatibility with node v10.1.0 and above
 
 /**
  * Read a .json file and return parsed data from it.
@@ -74,6 +74,21 @@ function getRandomInt(num) {
     return Math.floor(Math.random() * num);
 }
 
+/**
+ * Shuffle an array in pseudo-random order.
+ * @param {any[]} array Array to shuffle.
+ * @returns {any[]} Shuffled array.
+ */
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)),
+            temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
 const lowercase = 'abcdefghijklmnopqrstuvwxyz',
     uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     numbers = '0123456789';
@@ -86,11 +101,12 @@ const characters = {
 };
 
 module.exports = {
-    getRandomArbitrary,
-    getRandomInt,
     jsonRead,
     jsonWrite,
-    limit,
     sleep,
+    limit,
+    getRandomArbitrary,
+    getRandomInt,
+    shuffleArray,
     characters
 };

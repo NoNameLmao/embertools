@@ -1,6 +1,6 @@
 {
     "name": "emberutils",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "an npm package for small things that im lazy to add in every project i have",
     "main": "index.js",
     "types": "index.d.ts",
@@ -16,6 +16,9 @@
     },
     "author": "emberglaze",
     "license": "MIT",
+    "engines": {
+        "node": ">=10.1.0"
+    },
     "dependencies": {
         "node": "^17.3.1",
         "ts-node": "^10.4.0"

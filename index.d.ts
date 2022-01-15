@@ -46,6 +46,12 @@ export function limit(string: string, limit: number): string;
  * @returns {Promise<void>} void
  */
 export function sleep(ms: number): Promise<void>;
+/**
+ * Shuffle an array in pseudo-random order.
+ * @param {any[]} array Array to shuffle.
+ * @returns {any[]} Shuffled array.
+ */
+export function shuffleArray(array: any[]): any[];
 export namespace characters {
     export { lowercase };
     export { uppercase };
