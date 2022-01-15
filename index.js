@@ -5,8 +5,11 @@ const fs = require('fs/promises');
  * @param {string} filePath Path to the .json file, can be relative or absolute.
  * @returns {Promise<any>} Parsed JSON data
  */
-async function jsonRead(filePath) {
-    return JSON.parse(await fs.readFile(filePath, { encoding: 'utf8' }));
+function jsonRead(filePath) {
+    return new Promise(async(resolve, reject) => {
+        const data = await fs.readFile(filePath, { encoding: 'utf8' }).catch(reject);
+        resolve(JSON.parse(data));
+    });
 }
 /**
  * Write data to a .json file.
@@ -32,7 +35,7 @@ function sleep(ms) {
 
 /**
  * Limit a string's length to a certain number of characters.
- * @param {string} string String to limit .
+ * @param {string} string String to limit.
  * @param {number} limit Length to limit the string to. 
  * @returns {string} If string length is less than specified in "limit", returns the string itself. Otherwise returns string with the limited length.
  * @example
@@ -73,8 +76,7 @@ function getRandomInt(num) {
 
 const lowercase = 'abcdefghijklmnopqrstuvwxyz',
     uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    numbers = '0123456789'
-;
+    numbers = '0123456789';
 const characters = {
     lowercase: lowercase,
     uppercase: uppercase,
