@@ -23,11 +23,17 @@ async function jsonWrite(filePath, data) {
         resolve();
     });
 }
-
 /**
  * Promisified version of "setTimeout()" for waiting a certain amount of milliseconds before executing the next line of code.
  * @param {number} ms Number of milliseconds to wait. 
  * @returns {Promise<void>} void
+ * @example
+ * console.log('Hi!');
+ * await sleep(5000);
+ * console.log('Wait, are you leaving already?'); // runs after 5 seconds
+ * 
+ * // or...
+ * sleep(10000).then(() => console.log('I have like 10s ping, what\'s wrong?'));
  */
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -89,6 +95,71 @@ function shuffleArray(array) {
     return array;
 }
 
+/**
+ * Pseudo-random chance function.
+ * @param {number} number Chance in percentage to return 'true'.
+ * @returns {boolean} true or false.
+ * @example
+ * // 1% chance to piss off dream stans
+ * if (chance(1)) console.log('hi guys dream here today we will be speedrunning minecraft');
+ * else return;
+ */
+function chance(number) {
+    return Math.random() * 100 < number;
+}
+
+/**
+ * Get a pseudo-random RGB color.
+ * @returns {import('.').rgbArray} RGB color as an array of numbers.
+ * @example console.log(randomRgb()) // [ 217, 164, 62 ]
+ */
+function randomRgb() {
+    // 256 because need to include 255
+    return [getRandomInt(256), getRandomInt(256), getRandomInt(256)];
+}
+/**
+ * Convert HEX string to RGB array.
+ * @param {hexString} hex HEX string to convert to RGB color. Supports shorthands. (e.g. `03F` => `0033FF`)
+ * @returns {rgbArray | null} RGB array, null if nothing was found.
+ * @example
+ * console.log(hexToRgb('#7F437F')) // [ 127, 67, 127 ]
+ * console.log(hexToRgb('#3F2')) // [ 51, 255, 34 ] ('3F2' => '33FF22')
+ * console.log(hexToRgb('im not impostor!!')) // null
+ */
+function hexToRgb(hex) {
+    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+    let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => {
+        return r + r + g + g + b + b;
+    });
+
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+    ] : null;
+}
+/**
+ * Convert RGB array to HEX string.
+ * @param {import('.').rgbArray} rgb RGB values array. (e.g. `[15, 87, 69]`)
+ * @returns {import('.').hexString} HEX color string. (e.g. `#ffffff`)
+ * @example
+ * console.log(rgbToHex(15, 87, 69)) // '#0F5745'
+ * console.log(rgbToHex(hexToRgb('#0F5745'))) // '#0F5745'
+ */
+function rgbToHex(rgb) {
+    return "#" + ((1 << 24) + (rgb[0] << 16) + (rgb[1] << 8) + rgb[2]).toString(16).slice(1).toUpperCase();
+}
+
+/**
+ * Get a pseudo-random HEX string.
+ * @returns {hexString} Pseudo-random HEX color string.
+ */
+function randomHex() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16).toUpperCase();
+}
+
 const lowercase = 'abcdefghijklmnopqrstuvwxyz',
     uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     numbers = '0123456789';
@@ -108,5 +179,10 @@ module.exports = {
     getRandomArbitrary,
     getRandomInt,
     shuffleArray,
+    randomRgb,
+    chance,
+    hexToRgb,
+    rgbToHex,
+    randomHex,
     characters
 };

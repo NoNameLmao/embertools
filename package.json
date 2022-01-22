@@ -1,11 +1,11 @@
 {
     "name": "emberutils",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "an npm package for small things that im lazy to add in every project i have",
     "main": "index.js",
     "types": "index.d.ts",
     "scripts": {
-        "test": "node test.js && ts-node test.ts"
+        "test": "node test.js"
     },
     "keywords": [
         "tools"
@@ -20,11 +20,6 @@
         "node": ">=10.1.0"
     },
     "dependencies": {
-        "node": "^17.3.1",
-        "ts-node": "^10.4.0"
-    },
-    "devDependencies": {
-        "@types/node": "^17.0.8",
-        "typescript": "^4.5.4"
+        "shelljs": "^0.8.5"
     }
 }
