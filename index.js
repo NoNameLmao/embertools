@@ -1,4 +1,5 @@
 const fs = require('fs').promises; // for compatibility with node v10.1.0 and above
+const { rgbArray, hexString } = require('.');
 
 /**
  * Read a .json file and return parsed data from it.
@@ -108,7 +109,7 @@ function chance(number) {
 
 /**
  * Get a pseudo-random RGB color.
- * @returns {import('.').rgbArray} RGB color as an array of numbers.
+ * @returns {rgbArray} RGB color as an array of numbers.
  * @example console.log(randomRgb()) // [ 217, 164, 62 ]
  */
 function randomRgb() {
@@ -140,8 +141,8 @@ function hexToRgb(hex) {
 }
 /**
  * Convert RGB array to HEX string.
- * @param {import('.').rgbArray} rgb RGB values array. (e.g. `[15, 87, 69]`)
- * @returns {import('.').hexString} HEX color string. (e.g. `#ffffff`)
+ * @param {rgbArray} rgb RGB values array. (e.g. `[15, 87, 69]`)
+ * @returns {hexString} HEX color string. (e.g. `#ffffff`)
  * @example
  * console.log(rgbToHex(15, 87, 69)) // '#0F5745'
  * console.log(rgbToHex(hexToRgb('#0F5745'))) // '#0F5745'
