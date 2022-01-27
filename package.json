@@ -1,6 +1,6 @@
 {
     "name": "emberutils",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "an npm package for small things that im lazy to add in every project i have",
     "main": "index.js",
     "types": "index.d.ts",
