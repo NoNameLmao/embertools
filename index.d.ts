@@ -111,6 +111,13 @@ export function randomHex(): hexString;
  */
 export function formatBytes(bytes: number, decimals: number): string;
 export class DateExtended extends Date {
+    /**
+     * Function to format date by using a custom format defined in a string.
+     * 
+     * List of tokens: https://gist.github.com/NoNameLmao/e4bcb1411b6b0307f3685e1b9572e528
+     * @param {string} formatString Format string to use for custom formatting.
+     * @returns {string} Formatted date according to the format string.
+     */
     customFormat(formatString: string): string;
 }
 type rgbValue = number;
