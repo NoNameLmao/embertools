@@ -198,9 +198,8 @@ class DateExtended extends Date {
             DDDD = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][this.getDay()],
             DDD = DDDD.substring(0, 3),
             dMod = D % 10,
-            th = (D >= 10 && D <= 20) ? 'th' : (dMod == 1) ? 'st' : (dMod == 2) ? 'nd' : (dMod == 3) ? 'rd' : 'th';
-        formatString = formatString.replace("#YYYY#", YYYY).replace("#YY#", YY).replace("#MMMM#", MMMM).replace("#MMM#", MMM).replace("#MM#", MM).replace("#M#", M).replace("#DDDD#", DDDD).replace("#DDD#", DDD).replace("#DD#", DD).replace("#D#", D).replace("#th#", th);
-        const hhh = this.getHours();
+            th = (D >= 10 && D <= 20) ? 'th' : (dMod == 1) ? 'st' : (dMod == 2) ? 'nd' : (dMod == 3) ? 'rd' : 'th',
+            hhh = this.getHours();
         let h = hhh;
         const hh = h < 10 ? (`0${h}`) : h,
             hhhh = hhh < 10 ? ('0' + hhh) : hhh,
