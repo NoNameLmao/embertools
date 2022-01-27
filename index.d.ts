@@ -110,7 +110,9 @@ export function randomHex(): hexString;
  * console.log(formatBytes(84537652657555, 10)) // '76.8865471924 TB'
  */
 export function formatBytes(bytes: number, decimals: number): string;
-
+export class DateExtended extends Date {
+    customFormat(formatString: string): string;
+}
 type rgbValue = number;
 export type rgbArray = [rgbValue, rgbValue, rgbValue];
 export type hexString = `#${string}`;

@@ -1,5 +1,5 @@
 async function test() {
-    const { characters, getRandomArbitrary, getRandomInt, jsonRead, jsonWrite, limit, sleep, shuffleArray, randomRgb, hexToRgb, rgbToHex, randomHex, chance } = require('./index');
+    const { characters, getRandomArbitrary, getRandomInt, jsonRead, jsonWrite, limit, sleep, shuffleArray, randomRgb, hexToRgb, rgbToHex, randomHex, chance, formatBytes, DateExtended } = require('./index');
     console.log(getRandomArbitrary(-1337, 1337));
     console.log(getRandomInt(420));
 
@@ -12,6 +12,7 @@ async function test() {
     console.log(characters.all);
     console.log(shuffleArray(characters.all.split('')));
     console.log(chance(50));
+    console.log(formatBytes(getRandomInt(10000000000), 3));
     const random = {
         rgb: randomRgb(),
         hex: randomHex()
@@ -19,6 +20,7 @@ async function test() {
     console.log(random);
     console.log(rgbToHex(random.rgb));
     console.log(hexToRgb(random.hex));
+    console.log(new DateExtended().customFormat('#YYYY# #MMMM# #DDDD# #D##th# #hhhh#:#mm#:#ss#'));
 
     await sleep(1000);
     console.log(

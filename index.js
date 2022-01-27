@@ -177,6 +177,50 @@ function formatBytes(bytes, decimals = 2) {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
 
+class DateExtended extends Date {
+    /**
+     * Function to format date by using a custom format defined in a string.
+     * 
+     * List of tokens: https://gist.github.com/NoNameLmao/e4bcb1411b6b0307f3685e1b9572e528
+     * @param {string} formatString Format string to use for custom formatting.
+     * @returns {string} Formatted date according to the format string.
+     */
+    customFormat(formatString) {
+        const YYYY = this.getFullYear(),
+            YY = (`${YYYY}`).slice(-2),
+            M = this.getMonth() + 1,
+            MM = M < 10 ? (`0${M}`) : M,
+            MMMM = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][M - 1],
+            MMM = MMMM.substring(0, 3),
+            D = this.getDate(),
+            DD = D < 10 ? (`0${D}`) : D,
+            DDDD = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][this.getDay()],
+            DDD = DDDD.substring(0, 3),
+            dMod = D % 10,
+            th = (D >= 10 && D <= 20) ? 'th' : (dMod == 1) ? 'st' : (dMod == 2) ? 'nd' : (dMod == 3) ? 'rd' : 'th';
+        formatString = formatString.replace("#YYYY#", YYYY).replace("#YY#", YY).replace("#MMMM#", MMMM).replace("#MMM#", MMM).replace("#MM#", MM).replace("#M#", M).replace("#DDDD#", DDDD).replace("#DDD#", DDD).replace("#DD#", DD).replace("#D#", D).replace("#th#", th);
+        const hhh = this.getHours();
+        let h = hhh;
+        const hh = h < 10 ? (`0${h}`) : h,
+            hhhh = hhh < 10 ? ('0' + hhh) : hhh,
+            ampm = hhh < 12 ? 'am' : 'pm',
+            AMPM = ampm.toUpperCase(),
+            m = this.getMinutes(),
+            mm = m < 10 ? ('0' + m) : m,
+            s = this.getSeconds(),
+            ss = s < 10 ? ('0' + s) : s;
+        if (h == 0) h = 24;
+        if (h > 12) h -= 12;
+        return formatString
+            .replace("#YYYY#", YYYY).replace("#YY#", YY)
+            .replace("#MMMM#", MMMM).replace("#MMM#", MMM).replace("#MM#", MM).replace("#M#", M)
+            .replace("#DDDD#", DDDD).replace("#DDD#", DDD).replace("#DD#", DD).replace("#D#", D)
+            .replace("#th#", th).replace("#hhhh#", hhhh).replace("#hhh#", hhh).replace("#hh#", hh).replace("#h#", h)
+            .replace("#mm#", mm).replace("#m#", m).replace("#ss#", ss).replace("#s#", s)
+            .replace("#ampm#", ampm).replace("#AMPM#", AMPM);
+    }
+}
+
 const lowercase = 'abcdefghijklmnopqrstuvwxyz',
     uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     numbers = '0123456789';
@@ -202,5 +246,6 @@ module.exports = {
     rgbToHex,
     randomHex,
     formatBytes,
+    DateExtended,
     characters
 };
