@@ -99,6 +99,18 @@ export function rgbToHex(rgb: rgbArray): hexString;
  * @returns {hexString} Pseudo-random HEX color string.
  */
 export function randomHex(): hexString;
+/**
+ * A function to format bytes. Supports all the way to Yottabytes.
+ * @param {number} bytes Number of bytes to format.
+ * @param {number} decimals (Default = 2) Amount of decimals to include.
+ * @returns {string} Formatted bytes
+ * @example
+ * console.log(formatBytes(645952)) // '630.81 KB'
+ * console.log(formatBytes(584972157)) // '557.87 MB'
+ * console.log(formatBytes(84537652657555, 10)) // '76.8865471924 TB'
+ */
+export function formatBytes(bytes: number, decimals: number): string;
+
 type rgbValue = number;
 export type rgbArray = [rgbValue, rgbValue, rgbValue];
 export type hexString = `#${string}`;

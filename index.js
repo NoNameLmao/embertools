@@ -68,15 +68,13 @@ function getRandomArbitrary(min, max) {
 
 /**
  * Get a pseudo-random number from given value. Supports negative values.
- * @param {number} num A number. Cannot be equal to -1, 0 or 1
+ * @param {number} num A number. `(-1 will always return -1 and 0 or 1 will always return 0)`
  * @returns {number} If "num" > 0, returns a random number between 0 and "num". Otherwise returns a random negative number between "num" and 0.
  * @example
  * console.log(getRandomInt(-300)) // -229
  * console.log(getRandomInt(1337)) // 592
  */
 function getRandomInt(num) {
-    if (num == -1) throw new Error('getRandomInt(): "num" cannot be equal to -1 as it will always return -1.');
-    if (num == 0 || num == 1) throw new Error(`getRandomInt(): "num" cannot be equal to ${num} as it will always return 0.`);
     return Math.floor(Math.random() * num);
 }
 
@@ -160,6 +158,25 @@ function randomHex() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16).toUpperCase();
 }
 
+/**
+ * A function to format bytes. Supports all the way to Yottabytes.
+ * @param {number} bytes Number of bytes to format.
+ * @param {number} decimals (Default = 2) Amount of decimals to include.
+ * @returns {string} Formatted bytes
+ * @example
+ * console.log(formatBytes(645952)) // '630.81 KB'
+ * console.log(formatBytes(584972157)) // '557.87 MB'
+ * console.log(formatBytes(84537652657555, 10)) // '76.8865471924 TB'
+ */
+function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024,
+        dm = decimals < 0 ? 0 : decimals,
+        sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+        i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+}
+
 const lowercase = 'abcdefghijklmnopqrstuvwxyz',
     uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     numbers = '0123456789';
@@ -184,5 +201,6 @@ module.exports = {
     hexToRgb,
     rgbToHex,
     randomHex,
+    formatBytes,
     characters
 };
