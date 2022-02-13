@@ -1,5 +1,8 @@
+/**
+ * @module emberutils an npm package for small things that im lazy to add in every project i have
+ */
+
 const fs = require('fs').promises; // for compatibility with node v10.1.0 and above
-const { rgbArray, hexString } = require('.');
 
 /**
  * Read a .json file and return parsed data from it.
@@ -25,7 +28,7 @@ async function jsonWrite(filePath, data) {
     });
 }
 /**
- * Promisified version of "setTimeout()" for waiting a certain amount of milliseconds before executing the next line of code.
+ * Promisified version of "setTimeout()"
  * @param {number} ms Number of milliseconds to wait. 
  * @returns {Promise<void>} void
  * @example
@@ -47,7 +50,7 @@ function sleep(ms) {
  * @returns {string} If string length is less than specified in "limit", returns the string itself. Otherwise returns string with the limited length.
  * @example
  * const string = 'Subscribe to technoblade'; // 24 characters long
- * console.log(limit(string, 20)); // 'Subscribe to techno…' ("…" is 1 character)
+ * console.log(limit(string, 20)); // 'Subscribe to techno…' (19 + 1, "…" is 1 character)
  */
 function limit(string, limit) {
     if (string.length > limit) return string.substring(0, limit - 1) + '…';
@@ -109,7 +112,7 @@ function chance(number) {
 
 /**
  * Get a pseudo-random RGB color.
- * @returns {rgbArray} RGB color as an array of numbers.
+ * @returns {[number, number, number]} RGB color as an array of numbers.
  * @example console.log(randomRgb()) // [ 217, 164, 62 ]
  */
 function randomRgb() {
@@ -118,8 +121,8 @@ function randomRgb() {
 }
 /**
  * Convert HEX string to RGB array.
- * @param {hexString} hex HEX string to convert to RGB color. Supports shorthands. (e.g. `03F` => `0033FF`)
- * @returns {rgbArray | null} RGB array, null if nothing was found.
+ * @param {`#${string}`} hex HEX string to convert to RGB color. Supports shorthands. (e.g. `03F` => `0033FF`)
+ * @returns {[number, number, number] | null} RGB array, null if nothing was found.
  * @example
  * console.log(hexToRgb('#7F437F')) // [ 127, 67, 127 ]
  * console.log(hexToRgb('#3F2')) // [ 51, 255, 34 ] ('3F2' => '33FF22')
@@ -141,8 +144,8 @@ function hexToRgb(hex) {
 }
 /**
  * Convert RGB array to HEX string.
- * @param {rgbArray} rgb RGB values array. (e.g. `[15, 87, 69]`)
- * @returns {hexString} HEX color string. (e.g. `#ffffff`)
+ * @param {[number, number, number]} rgb RGB values array. (e.g. `[15, 87, 69]`)
+ * @returns {`#${string}`} HEX color string. (e.g. `#ffffff`)
  * @example
  * console.log(rgbToHex(15, 87, 69)) // '#0F5745'
  * console.log(rgbToHex(hexToRgb('#0F5745'))) // '#0F5745'
@@ -153,7 +156,7 @@ function rgbToHex(rgb) {
 
 /**
  * Get a pseudo-random HEX string.
- * @returns {hexString} Pseudo-random HEX color string.
+ * @returns {`#${string}`} Pseudo-random HEX color string.
  */
 function randomHex() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16).toUpperCase();
@@ -180,7 +183,7 @@ function formatBytes(bytes, decimals = 2) {
 
 class DateExtended extends Date {
     /**
-     * Function to format date by using a custom format defined in a string.
+     * Function to format date by using a custom format defined in a string with custom tokens.
      * 
      * List of tokens: https://gist.github.com/NoNameLmao/e4bcb1411b6b0307f3685e1b9572e528
      * @param {string} formatString Format string to use for custom formatting.
@@ -225,12 +228,42 @@ const lowercase = 'abcdefghijklmnopqrstuvwxyz',
     uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     numbers = '0123456789';
 const characters = {
-    lowercase: lowercase,
-    uppercase: uppercase,
-    numbers: numbers,
-    letters: `${lowercase}${uppercase}`,
-    all: `${lowercase}${uppercase}${numbers}`
+    string: {
+        lowercase: lowercase,
+        uppercase: uppercase,
+        numbers: numbers,
+        letters: `${lowercase}${uppercase}`,
+        all: `${lowercase}${uppercase}${numbers}`
+    },
+    array: {
+        lowercase: lowercase.split(''),
+        uppercase: uppercase.split(''),
+        numbers: numbers.split('').forEach(parseInt),
+        letters: [].concat(lowercase.split(''), uppercase.split('')),
+        all: [].concat(lowercase.split(''), uppercase.split(''), numbers.split('').forEach(parseInt))
+    }
 };
+const minecraft = {
+    /**
+     * Get pseudo-random minecraft coordinates (world border at 30m + build height limits)
+     * @param {boolean} preCavesAndCliffs Specify if the coordinates should be pre-1.18 or not
+     * @param {'array' | 'object' | 'string'} format The format to return the coordinates in
+     * @returns {number[] | {x: number, y: number, z: number} | string} Pseudo-random minecraft coordinates
+     */
+    getRandomCoordinates(preCavesAndCliffs, format) {
+        if (preCavesAndCliffs) {
+            // Pre-1.18
+            if (format === 'array') return [getRandomArbitrary(-29999984, 29999984), getRandomArbitrary(0, 256), getRandomArbitrary(-29999984, 29999984)]
+            if (format === 'object') return { x: getRandomArbitrary(-29999984, 29999984), y: getRandomArbitrary(0, 256), z: getRandomArbitrary(-29999984, 29999984) }
+            if (format === 'string') return `${getRandomArbitrary(-29999984, 29999984)} ${getRandomArbitrary(0, 256)} ${getRandomArbitrary(-29999984, 29999984)}`
+        } else {
+            // 1.18 and later
+            if (format === 'array') return [getRandomArbitrary(-29999984, 29999984), getRandomArbitrary(-64, 320), getRandomArbitrary(-29999984, 29999984)]
+            if (format === 'object') return { x: getRandomArbitrary(-29999984, 29999984), y: getRandomArbitrary(-64, 320), z: getRandomArbitrary(-29999984, 29999984) }
+            if (format === 'string') return `${getRandomArbitrary(-29999984, 29999984)} ${getRandomArbitrary(-64, 320)} ${getRandomArbitrary(-29999984, 29999984)}`
+        }
+    }
+}
 
 module.exports = {
     jsonRead,
@@ -247,5 +280,6 @@ module.exports = {
     randomHex,
     formatBytes,
     DateExtended,
-    characters
+    characters,
+    minecraft
 };

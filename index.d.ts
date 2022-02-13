@@ -109,7 +109,7 @@ export function randomHex(): hexString;
  * console.log(formatBytes(584972157)) // '557.87 MB'
  * console.log(formatBytes(84537652657555, 10)) // '76.8865471924 TB'
  */
-export function formatBytes(bytes: number, decimals: number): string;
+export function formatBytes(bytes: number, decimals?: number): string;
 export class DateExtended extends Date {
     /**
      * Function to format date by using a custom format defined in a string.
@@ -120,17 +120,41 @@ export class DateExtended extends Date {
      */
     customFormat(formatString: string): string;
 }
-type rgbValue = number;
-export type rgbArray = [rgbValue, rgbValue, rgbValue];
+export type rgbArray = [number, number, number];
 export type hexString = `#${string}`;
-export namespace characters {
-    export { lowercase };
-    export { uppercase };
-    export { numbers };
-    export const letters: string;
-    export const all: string;
-}
 
 export const lowercase: "abcdefghijklmnopqrstuvwxyz";
 export const uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 export const numbers: "0123456789";
+export namespace characters {
+    const string: {
+        lowercase: 'abcdefghijklmnopqrstuvwxyz',
+        uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        number: '0123456789',
+        letters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        all: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    }
+    const array: {
+        lowercase: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+        uppercase: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+        number: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        letters: [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        ],
+        all: [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+        ]
+    }
+}
+export namespace minecraft {
+    /**
+     * Get pseudo-random minecraft coordinates (world border at 30m + build height limits)
+     * @param {boolean} preCavesAndCliffs Specify if the coordinates should be pre-1.18 or not
+     * @param {'array' | 'object' | 'string'} format The format to return the coordinates in
+     * @returns {number[] | {x: number, y: number, z: number} | string} Pseudo-random minecraft coordinates
+     */
+    export function getRandomCoordinates(preCavesAndCliffs: boolean, format: 'array' | 'object' | 'string'): number[] | {x: number, y: number, z: number} | string
+}
