@@ -12,7 +12,7 @@ export function jsonRead(filePath: string): Promise<any>;
  */
 export function jsonWrite(filePath: string, data: string[] | object[] | object): Promise<void>;
 /**
- * Promisified version of "setTimeout()" for waiting a certain amount of milliseconds before executing the next line of code.
+ * Promisified version of "setTimeout()"
  * @param {number} ms Number of milliseconds to wait. 
  * @returns {Promise<void>} void
  * @example
@@ -31,7 +31,7 @@ export function sleep(ms: number): Promise<void>;
  * @returns {string} If string length is less than specified in "limit", returns the string itself. Otherwise returns string with the limited length.
  * @example
  * const string = 'Subscribe to technoblade'; // 24 characters long
- * console.log(limit(string, 20)); // 'Subscribe to techno…' ("…" is 1 character)
+ * console.log(limit(string, 20)); // 'Subscribe to techno…' (19 + 1, "…" is 1 character)
  */
 export function limit(string: string, limit: number): string;
 /**
